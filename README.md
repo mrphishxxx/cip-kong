@@ -23,3 +23,21 @@ $ sudo docker run -d \
     --link cassandra:cassandra \
     mashape/kong
 ```
+
+### Testing
+
+1. Add your "/info" API for canopycloud/microservice-nodejs:
+   ```sh
+$ curl -i -X POST \
+ --url http://localhost:8001/apis/ \
+ --data 'name=info' \
+ --data 'target_url=http://localhost:3000/info' \
+ --data 'public_dns=info'
+```
+
+2. Check the API:
+   ```sh
+$ curl -i -X GET \
+ --url http://localhost:8000/ \
+ --header 'Host: info'
+```
